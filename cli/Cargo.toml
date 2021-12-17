@@ -1,0 +1,20 @@
+[package]
+name = "qbit-cert-cli"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1"
+borsh = "0.9.1"
+clap = { version = "3.0.0-rc.4", features = ["derive"] }
+hex = "0.4.3"
+near-crypto = "0.10.0"
+near-jsonrpc-client = { git = "https://github.com/near/near-jsonrpc-client-rs.git", rev = "538b6c9fa627715b578b36cac7ff33c5410ef1d6" }
+near-jsonrpc-primitives = "0.10.0"
+near-primitives = "0.10.0"
+serde = "1.0.131"
+serde_json = "1.0.72"
+sodiumoxide = "0.2.7"
+tokio = { version = "1", features = ["macros"] }
