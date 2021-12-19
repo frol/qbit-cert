@@ -201,19 +201,20 @@ impl CertificatesContract {
                 body: "<h1>Welcome to Certification on NEAR</h1><p>Reach out to <a href=\"https://t.me/frolvlad\">https://t.me/frolvlad</a> for more details about this project</p>".as_bytes().to_owned().into(),
             }
         } else {
+            // `/100500`
             if let Ok(certificate_id) = u64::from_str(&request.path[1..]) {
                 if let Some(certificate) = self.get_certificate(certificate_id.into()) {
-                let certificate_template = self.certificate_templates.get(certificate.certificate_template_id.into()).unwrap();
+                    let certificate_template = self
+                        .certificate_templates
+                        .get(certificate.certificate_template_id.into())
+                        .unwrap();
                     Web4Response::Body {
                         content_type: "text/html; charset=UTF-8".to_owned(),
                         body: include_str!("certificate-viewer.html")
-                            .replace(
-                                "{{{ CERTIFICATE_ID }}}",
-                                &certificate_id.to_string(),
-                            )
+                            .replace("{{{ CERTIFICATE_ID }}}", &certificate_id.to_string())
                             .replace(
                                 "{{{ CERTIFICATE_TEMPLATE }}}",
-                                &serde_json::to_string(&certificate_template).unwrap()
+                                &serde_json::to_string(&certificate_template).unwrap(),
                             )
                             .replace(
                                 "{{{ CERTIFICATE }}}",
